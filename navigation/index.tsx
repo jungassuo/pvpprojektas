@@ -1,24 +1,17 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import DrawerNavigator from './DrawerNavigator';
 import { ColorSchemeName } from 'react-native';
 
-import NotFoundScreen from '../screens/NotFoundScreen';
-import { RootStackParamList } from '../types';
-import DrawerNavigator from './DrawerNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
+import LoginScreen from '../screens/LoginScreen';
+import AdminUI from './AdminUI';
 
-import LoginScreen from '../screens/LoginScreen'
 
-import AuthScreen from './AuthScreen';
 
-import { View, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 //import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import { useAuthentication } from '../hooks/useauthentification';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAdaI9e629Jl6eyQC4zbofYjpvVkBXF_oo",
@@ -35,8 +28,9 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-        <Stack.Screen name="Root" component={DrawerNavigator} />
+        {/* <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Root" component={DrawerNavigator} /> */}
+        <Stack.Screen name="Root" component={AdminUI} />
       </Stack.Navigator>
     </NavigationContainer>
   );

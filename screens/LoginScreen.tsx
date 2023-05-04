@@ -66,6 +66,7 @@ const LoginScreen = () =>{
         const auth = getAuth(app)
         signInWithEmailAndPassword(auth, email, password).then((auth)=>{
             if(auth.user!==null){
+                console.log("pavyko")
                 navigation.navigate('Root')
             }
         }).catch((error) =>{

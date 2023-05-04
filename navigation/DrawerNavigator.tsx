@@ -7,7 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as MediaLibrary from 'expo-media-library';
 import CheckboxTreeScreen from './test'
 
-import { StyleSheet, Text, View, ImageBackground,Button, Pressable  } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground,Button, Pressable, TouchableOpacity,Image } from 'react-native';
 
 import DatabaseScreen from '../screens/DatabaseScreen';
 import FileSystemScreen from '../screens/FileSystemScreen';
@@ -24,8 +24,8 @@ const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
   return (
     <Drawer.Navigator
-      drawerContent={(props)=><DrawerContent {...props}/>}
-      screenOptions={({ navigation }) => ({
+      drawerContent={(props:any)=><DrawerContent {...props}/>}
+      screenOptions={({ navigation }:any) => ({
         headerShown: true,
         headerTransparent:true,
         headerStyle:{
@@ -106,6 +106,14 @@ const styles = StyleSheet.create({
     fontFamily:'Roboto',
     textAlign:'center'
   },
+  KuponoTekstas:{
+    marginTop: 50,
+    marginBottom: 150,
+    fontSize: 35,
+    color: 'white',
+    fontFamily: 'Roboto',
+    textAlign: 'center',
+  },
   scoreText:{
     fontSize:25,
     textAlign:'center',
@@ -130,6 +138,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  KuponoImage:{
+    height:80,
+    width:80,
+    borderRadius: 20
+  },
+  KuponoKaina:{
+    position:'absolute',
+    width:80,
+    bottom:0,
+    height:'25%',
+    textAlign:'center',
+    fontWeight:'bold',
+    backgroundColor:'white',
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:20
+  },
   image1: {
     flex: 1,
   },
@@ -141,6 +165,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#000000c0',
   },
+  KuponuPuslapioView:{
+    alignItems: "center",
+    width:380,
+    height:500,
+    margin:15,
+  },
+  Kuponas: {
+    height: 80,
+    width: 80,
+    borderRadius: 20,
+    margin: 15,
+    position:'relative',
+  },
+  
+  KuponuViewas:{
+    display:'flex',
+    flexDirection:'row'
+  }
 });
 
 const SaveToPhone = async(item:any) =>{
@@ -183,7 +225,6 @@ const pickImage = async () => {
     aspect: [4, 3],
     quality: 1,
   })
-  console.log(res)
 }
 
 
@@ -191,10 +232,8 @@ function DatabaseNavigator({navigation}:any) {
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/backgroundNuotrauka.png')} resizeMode="cover" style={styles.image} >
-        
         <CustomButton onPress={() => {
           takeImage()
-          navigation.navigate("Klausimynas")
         }}/>
 
       </ImageBackground>
@@ -212,7 +251,7 @@ function Profilis({ navigation }: any) {
           </View>
           <View style={{ marginLeft: 15, marginTop: 15 }}>
             <Title style={styles.title}>Tadas Ivanauskas</Title>
-            <Caption style={styles.caption}>ADMINISTRATORIUS</Caption>
+            <Caption style={styles.caption}>DARBUOTOJAS</Caption>
           </View>
         </View>
         <View style={styles.points}>
@@ -245,6 +284,39 @@ function ClientsNavigator() {
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/backgroundNuotrauka.png')} resizeMode="cover" style={styles.image} >
+        <View style={styles.KuponuPuslapioView}>
+          <Text style={styles.KuponoTekstas}>
+            Turimi taškai: 16
+          </Text>
+          <View style={styles.KuponuViewas}>
+            <TouchableOpacity style={styles.Kuponas}>
+            <Image style={styles.KuponoImage} source={require('../assets/unnamed.png')} />
+            <Text style={styles.KuponoKaina}>20 💰</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Kuponas}>
+              <Image style={styles.KuponoImage} source={require('../assets/unnamed1.png')} />
+              <Text style={styles.KuponoKaina}>25 💰</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Kuponas}>
+              <Image style={styles.KuponoImage} source={require('../assets/unnamed2.png')} />
+              <Text style={styles.KuponoKaina}>50 💰</Text>
+            </TouchableOpacity>
+            </View>
+            <View style={styles.KuponuViewas}> 
+            <TouchableOpacity style={styles.Kuponas}>
+              <Image style={styles.KuponoImage} source={require('../assets/unnamed3.jpg')} />
+              <Text style={styles.KuponoKaina}>5 💰</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Kuponas}>
+              <Image style={styles.KuponoImage} source={require('../assets/unnamed4.jpg')} />
+              <Text style={styles.KuponoKaina}>10 💰</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Kuponas}>
+              <Image style={styles.KuponoImage} source={require('../assets/unnamedPro.png')} />
+              <Text style={styles.KuponoKaina}>100 💰</Text>
+              </TouchableOpacity>
+          </View>
+        </View>
       </ImageBackground>
     </View>
   )

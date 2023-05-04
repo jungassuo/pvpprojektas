@@ -33,7 +33,7 @@ const CustomButton = (props:any) => {
     if(isPressed){
         return <ImageBackground>{content}</ImageBackground>
     }else{
-    return <TouchableOpacity onPress={() => {if(!isPressed){setPressed(!isPressed)}}}>{content}</TouchableOpacity>
+    return <TouchableOpacity onPress={() => {if(!isPressed){setPressed(!isPressed); props.onPress()}}}>{content}</TouchableOpacity>
 }
 }
 
